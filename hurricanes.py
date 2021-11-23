@@ -25,7 +25,17 @@ conversion = {"M": 1000000,
               "B": 1000000000}
 
 # test function by updating damages
+def convert_damages_data(damages):
+    new_damages = []
+    for damage in damages:
+        if damage == "Damages not recorded":
+            new_damages.append(damage)
+        else:
+            new_damages.append(float(damage[:-1]) * conversion[damage[-1]])
+    return new_damages
 
+updated_damages = convert_damages_data(damages)
+print(updated_damages)
 
 # 2 
 # Create a Table
