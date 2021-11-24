@@ -167,3 +167,21 @@ damage_scale = {0: 0,
                 4: 50000000000}
   
 # categorize hurricanes in new dictionary with damage severity as key
+def categorize_by_damage(hurricanes):
+    hurricanes_by_damage = {0: [], 1: [], 2: [], 3: [], 4: [], 5: []}
+    for hurricane in hurricanes.values():
+        if hurricane["Damage"] == "Damages not recorded" or hurricane["Damage"] == damage_scale[0]:
+            hurricanes_by_damage[0].append(hurricane)
+        elif damage_scale[0] < hurricane["Damage"] <= damage_scale[1]:
+            hurricanes_by_damage[1].append(hurricane)
+        elif damage_scale[1] < hurricane["Damage"] <= damage_scale[2]:
+            hurricanes_by_damage[2].append(hurricane)
+        elif damage_scale[2] < hurricane["Damage"] <= damage_scale[3]:
+            hurricanes_by_damage[3].append(hurricane)
+        elif damage_scale[3] < hurricane["Damage"] <= damage_scale[4]:
+            hurricanes_by_damage[4].append(hurricane)
+        elif hurricane["Damage"] > damage_scale[4]:
+            hurricanes_by_damage[5].append(hurricane)
+    return hurricanes_by_damage
+
+hurricanes_by_damage = categorize_by_damage(hurricanes)
