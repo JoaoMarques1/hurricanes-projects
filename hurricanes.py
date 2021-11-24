@@ -117,14 +117,34 @@ def deadliest_hurricane_count(hurricanes):
     return hurricane_name, deaths
 
 hurricane, num_deaths = deadliest_hurricane_count(hurricanes)
-print(f"The deadliest hurricane was {hurricane} with the total amount of {num_deaths} number of deaths!")
 
 # 7
 # Rating Hurricanes by Mortality
-
+mortality_scale = {0: 0,
+                   1: 100,
+                   2: 500,
+                   3: 1000,
+                   4: 10000}
 
 # categorize hurricanes in new dictionary with mortality severity as key
+def categorize_by_mortality(hurricanes):
+    hurricanes_by_mortality = {0: [], 1: [], 2: [], 3: [], 4: [], 5: []}
+    for hurricane in hurricanes.values():
+        if hurricane["Deaths"] == mortality_scale[0]:
+            hurricanes_by_mortality[0].append(hurricane)
+        elif mortality_scale[0] < hurricane["Deaths"] <= mortality_scale[1]:
+            hurricanes_by_mortality[1].append(hurricane)
+        elif mortality_scale[1] < hurricane["Deaths"] <= mortality_scale[2]:
+            hurricanes_by_mortality[2].append(hurricane)
+        elif mortality_scale[2] < hurricane["Deaths"] <= mortality_scale[3]:
+            hurricanes_by_mortality[3].append(hurricane)
+        elif mortality_scale[3] < hurricane["Deaths"] <= mortality_scale[4]:
+            hurricanes_by_mortality[4].append(hurricane)
+        elif hurricane["Deaths"] > mortality_scale[4]:
+            hurricanes_by_mortality[5].append(hurricane)
+    return hurricanes_by_mortality
 
+hurricanes_by_mortality = categorize_by_mortality(hurricanes)
 
 # 8 Calculating Hurricane Maximum Damage
 
