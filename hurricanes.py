@@ -35,12 +35,25 @@ def convert_damages_data(damages):
     return new_damages
 
 updated_damages = convert_damages_data(damages)
-print(updated_damages)
+# print(updated_damages)
 
 # 2 
 # Create a Table
-
 # Create and view the hurricanes dictionary
+def create_dictionary(names, months, years, max_sustained_winds, areas_affected, damages, deaths):
+    hurricanes = {}
+    for i in range(len(names)):
+        hurricanes[names[i]] = {"Name": names[i],
+                                "Month": months[i],
+                                "Year": years[i],
+                                "Max Sustained Winds": max_sustained_winds[i],
+                                "Areas Affected": areas_affected[i],
+                                "Damage": damages[i],
+                                "Deaths": deaths[i]}
+    return hurricanes
+
+hurricanes = create_dictionary(names, months, years, max_sustained_winds, areas_affected, damages, deaths)
+print(hurricanes)
 
 # 3
 # Organizing by Year
