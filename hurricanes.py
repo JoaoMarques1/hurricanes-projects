@@ -90,12 +90,20 @@ def count_affected_areas(hurricanes):
 
 affected_areas_count = count_affected_areas(hurricanes)
 
-
 # 5 
 # Calculating Maximum Hurricane Count
-
 # find most frequently affected area and the number of hurricanes involved in
+def most_affected_areas(affected_areas):
+    area_name = ''
+    count = 0
+    for area, times_affected in affected_areas.items():
+        if times_affected > count:
+            area_name = area
+            count = times_affected
+    return area_name, count
 
+area_name, times_affected = most_affected_areas(affected_areas_count)
+print(f"The most affected area was {area_name} with a total amount of {times_affected} times!")
 
 # 6
 # Calculating the Deadliest Hurricane
