@@ -22,7 +22,7 @@ deaths = [90,4000,16,3103,179,184,408,682,5,1023,43,319,688,259,37,11,2068,269,3
 # Extra Function To Visualize dictionaries
 def print_dictionary(dictionary):
     for k, v in dictionary.items():
-        print(f"{k}: {v}\n")
+        print(f"{k}: {v}")
 
 # 1
 # Update Recorded Damages
@@ -40,7 +40,7 @@ def convert_damages_data(damages):
     return new_damages
 
 updated_damages = convert_damages_data(damages)
-# print(updated_damages)
+
 
 # 2 
 # Create a Table
@@ -58,18 +58,37 @@ def create_dictionary(names, months, years, max_sustained_winds, areas_affected,
     return hurricanes
 
 hurricanes = create_dictionary(names, months, years, max_sustained_winds, areas_affected, damages, deaths)
-print_dictionary(hurricanes)
+
 
 # 3
 # Organizing by Year
-
 # create a new dictionary of hurricanes with year and key
+def organize_by_year(dictionary):
+    new_dic = {}
+    for value in dictionary.values():
+        if value["Year"] not in new_dic:
+            new_dic[value["Year"]] = [value]
+        else:
+            new_dic[value["Year"]].append(value)
+    return new_dic
+
+hurricanes_by_year = organize_by_year(hurricanes)
 
 
 # 4
 # Counting Damaged Areas
-
 # create dictionary of areas to store the number of hurricanes involved in
+def count_affected_areas(hurricanes):
+    affected_areas = {}
+    for hurricane in hurricanes.values():
+        for area in hurricane["Areas Affected"]:
+            if area not in affected_areas:
+                affected_areas[area] = 1
+            else:
+                affected_areas[area] += 1
+    return affected_areas
+
+affected_areas_count = count_affected_areas(hurricanes)
 
 
 # 5 
