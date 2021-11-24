@@ -103,12 +103,21 @@ def most_affected_areas(affected_areas):
     return area_name, count
 
 area_name, times_affected = most_affected_areas(affected_areas_count)
-print(f"The most affected area was {area_name} with a total amount of {times_affected} times!")
 
 # 6
 # Calculating the Deadliest Hurricane
-
 # find highest mortality hurricane and the number of deaths
+def deadliest_hurricane_count(hurricanes):
+    hurricane_name = ''
+    deaths = 0
+    for hurricane in hurricanes.values():
+        if hurricane["Deaths"] > deaths:
+            hurricane_name = hurricane["Name"]
+            deaths = hurricane["Deaths"]
+    return hurricane_name, deaths
+
+hurricane, num_deaths = deadliest_hurricane_count(hurricanes)
+print(f"The deadliest hurricane was {hurricane} with the total amount of {num_deaths} number of deaths!")
 
 # 7
 # Rating Hurricanes by Mortality
