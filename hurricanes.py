@@ -41,7 +41,6 @@ def convert_damages_data(damages):
 
 updated_damages = convert_damages_data(damages)
 
-
 # 2 
 # Create a Table
 # Create and view the hurricanes dictionary
@@ -57,8 +56,7 @@ def create_dictionary(names, months, years, max_sustained_winds, areas_affected,
                                 "Deaths": deaths[i]}
     return hurricanes
 
-hurricanes = create_dictionary(names, months, years, max_sustained_winds, areas_affected, damages, deaths)
-
+hurricanes = create_dictionary(names, months, years, max_sustained_winds, areas_affected, updated_damages, deaths)
 
 # 3
 # Organizing by Year
@@ -73,7 +71,6 @@ def organize_by_year(dictionary):
     return new_dic
 
 hurricanes_by_year = organize_by_year(hurricanes)
-
 
 # 4
 # Counting Damaged Areas
@@ -147,9 +144,19 @@ def categorize_by_mortality(hurricanes):
 hurricanes_by_mortality = categorize_by_mortality(hurricanes)
 
 # 8 Calculating Hurricane Maximum Damage
-
 # find highest damage inducing hurricane and its total cost
+def highest_damage(hurricanes):
+    name = ''
+    amount_damage = 0
+    for hurricane in hurricanes.values():
+        if hurricane["Damage"] == "Damages not recorded":
+            pass
+        elif hurricane["Damage"] > amount_damage:
+            name = hurricane["Name"]
+            amount_damage = hurricane["Damage"]
+    return name, amount_damage
 
+hurricane_name, damage_cost = highest_damage(hurricanes)
 
 # 9
 # Rating Hurricanes by Damage
